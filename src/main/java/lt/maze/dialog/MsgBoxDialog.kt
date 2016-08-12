@@ -12,10 +12,10 @@ import net.gtaun.util.event.EventManager
 open class MsgBoxDialog(player: Player, eventManager: EventManager) : AbstractDialog(player, eventManager) {
 
     override val style = DialogStyle.MSGBOX
-    private var clickOkHandler: ((MsgBoxDialog, String) -> Unit)? = null
+    private var clickOkHandler: ((MsgBoxDialog) -> Unit)? = null
 
     override fun onClickOk(event: DialogResponseEvent) {
-        clickOkHandler?.invoke(this, event.inputText)
+        clickOkHandler?.invoke(this)
     }
 
 
@@ -36,7 +36,7 @@ open class MsgBoxDialog(player: Player, eventManager: EventManager) : AbstractDi
 
 
         @Suppress("UNCHECKED_CAST")
-        fun clickOk(handler: (MsgBoxDialog, String) -> Unit): V {
+        fun clickOk(handler: (MsgBoxDialog) -> Unit): V {
             dialog.clickOkHandler = handler
             return this as V
         }
