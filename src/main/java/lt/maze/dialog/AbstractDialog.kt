@@ -93,31 +93,37 @@ abstract class AbstractDialog(player: Player, eventManager: EventManager) : Dial
 
         private val dialog = dialog
 
+        @Suppress("UNCHECKED_CAST")
         open fun body(text: String): V {
             dialog.body = text
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         open fun caption(caption: () -> String): V {
             dialog.title = caption.invoke()
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         open fun buttonOk(buttonOk: () -> String): V {
             dialog.buttonOk = buttonOk.invoke()
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         open fun buttonOk(buttonOk: String): V {
             dialog.buttonOk = buttonOk
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         open fun buttonCancel(buttonCancel: () -> String): V {
             dialog.buttonCancel = buttonCancel.invoke()
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         open fun onClickCancel(handler: (AbstractDialog) -> Unit): V {
             dialog.clickCancelHandler = handler
             return this as V

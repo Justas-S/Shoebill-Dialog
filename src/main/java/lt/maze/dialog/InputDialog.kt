@@ -40,6 +40,7 @@ open class InputDialog(player: Player, eventManager: EventManager, val passwordM
 
     abstract class AbstractInputDialogBuilder<T: InputDialog, V: AbstractInputDialogBuilder<T, V>>(val dialog: T): AbstractDialogBuilder<T, V>(dialog) {
 
+        @Suppress("UNCHECKED_CAST")
         fun clickOk(handler: (InputDialog, String) -> Unit): V {
             dialog.clickOkHandler = handler
             return this as V

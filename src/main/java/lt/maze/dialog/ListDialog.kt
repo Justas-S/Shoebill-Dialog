@@ -48,16 +48,19 @@ open class ListDialog(player: Player, eventManager: EventManager): AbstractDialo
 
     abstract class AbstractListDialogBuilder<T: ListDialog, V: AbstractListDialogBuilder<T, V>>(val dialog: T): AbstractDialogBuilder<T, V>(dialog) {
 
+        @Suppress("UNCHECKED_CAST")
         fun onSelectItem(apply: (ListDialog, ListDialogItem) -> Unit): V {
             dialog.clickOkHandler = apply
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun items(items: List<ListDialogItem>): V {
             dialog.items.addAll(items)
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun item(item: ListDialogItem): V {
             dialog.items.add(item)
             return this as V

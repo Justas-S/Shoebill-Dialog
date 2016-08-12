@@ -48,16 +48,19 @@ open class TabListDialog(player: Player, eventManager: EventManager): ListDialog
             return header(header.invoke())
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun header(header: TabListDialogHeader): V {
             dialog.headers.add(header.index, header)
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun item(item: TabListDialogItem): V {
             dialog.items.add(item)
             return this as V
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun item(item: () -> TabListDialogItem): V {
             dialog.items.add(item.invoke())
             return this as V

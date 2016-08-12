@@ -35,6 +35,7 @@ open class MsgBoxDialog(player: Player, eventManager: EventManager) : AbstractDi
         where T: MsgBoxDialog, V: AbstractMsgBoxDialogBuilder<T, V> {
 
 
+        @Suppress("UNCHECKED_CAST")
         fun clickOk(handler: (MsgBoxDialog, String) -> Unit): V {
             dialog.clickOkHandler = handler
             return this as V
