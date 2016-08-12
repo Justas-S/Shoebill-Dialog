@@ -12,10 +12,7 @@ open class TabListDialogItem(itemText: String, data: Any?, selectHandler: ((List
     protected var tabSelectHandler: ((TabListDialogItem) -> Unit)? = null
 
     override var itemText: String = ""
-        get() {
-            println(columns.joinToString("\t" ))
-            return columns.joinToString("\t")
-        }
+        get() = columns.joinToString("\t")
         set(value) {
             field = value
             columns = value.split("\t").toTypedArray()
