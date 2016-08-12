@@ -12,14 +12,12 @@ import net.gtaun.util.event.EventManagerNode
  * @author Bebras
  * 2016.08.10.
  */
-abstract class AbstractDialog(player: Player, eventManager: EventManager) : Dialog {
+abstract class AbstractDialog(override val player: Player, override val eventManager: EventManager) : Dialog {
 
     var shown = false
     var destroyed = false
 
     override val dialogId: DialogId = DialogId.create()
-    override val player: Player = player
-    override val eventManager: EventManager = eventManager
     override var title: String? = null
     override var body: String? = null
     override var buttonOk: String? = null
