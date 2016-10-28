@@ -23,6 +23,7 @@ interface Dialog: Destroyable {
     var buttonCancel: String?
 
     fun show()
+    fun showParent()
 
 
 }

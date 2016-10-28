@@ -22,6 +22,7 @@ abstract class AbstractDialog(override val player: Player, override val eventMan
     override var body: String? = null
     override var buttonOk: String? = null
     override var buttonCancel: String? = null
+    var parentDialogProvider: (() -> Dialog)? = null
 
     open var clickCancelHandler: ((AbstractDialog) -> Unit)? = null
 
@@ -64,6 +65,10 @@ abstract class AbstractDialog(override val player: Player, override val eventMan
                 }
             })
         }
+    }
+
+    override fun showParent() {
+        parentDialogProvider?.invoke()?.show()
     }
 
     abstract fun onClickOk(event: DialogResponseEvent)
@@ -130,6 +135,18 @@ abstract class AbstractDialog(override val player: Player, override val eventMan
         @Suppress("UNCHECKED_CAST")
         open fun onClickCancel(handler: (AbstractDialog) -> Unit): V {
             dialog.clickCancelHandler = handler
+            return this as V
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        open fun parent(dialog: AbstractDialog): V {
+            dialog.parentDialogProvider = { dialog }
+            return this as V
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        open fun parent(parentProvider: () -> AbstractDialog): V {
+            dialog.parentDialogProvider = parentProvider
             return this as V
         }
 
