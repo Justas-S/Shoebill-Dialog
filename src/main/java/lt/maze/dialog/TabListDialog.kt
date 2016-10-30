@@ -10,7 +10,7 @@ import net.gtaun.util.event.EventManager
  */
 open class TabListDialog(player: Player, eventManager: EventManager): ListDialog(player, eventManager) {
 
-    private var headers: MutableList<TabListDialogHeader> = mutableListOf()
+    protected var headers: MutableList<TabListDialogHeader> = mutableListOf()
 
     override val style: DialogStyle
         get() {
