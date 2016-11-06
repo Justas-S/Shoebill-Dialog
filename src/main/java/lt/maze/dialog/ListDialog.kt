@@ -65,6 +65,12 @@ open class ListDialog(player: Player, eventManager: EventManager): AbstractDialo
             dialog.items.add(item)
             return this as V
         }
+
+        fun item(itemProvider: ListDialogItem.() -> Unit): V {
+            val item = ListDialogItem()
+            item.itemProvider()
+            return item(item)
+        }
     }
     class ListDialogBuilder(dialog: ListDialog): AbstractListDialogBuilder<ListDialog, ListDialogBuilder>(dialog) {
 

@@ -60,11 +60,7 @@ open class TabListDialog(player: Player, eventManager: EventManager): ListDialog
             return this as V
         }
 
-        @Suppress("UNCHECKED_CAST")
-        fun item(item: () -> TabListDialogItem): V {
-            dialog.items.add(item.invoke())
-            return this as V
-        }
+
     }
 
     class TabListDialogBuilder internal constructor(dialog: TabListDialog): AbstractTabListDialogBuilder<TabListDialog, TabListDialogBuilder>(dialog) {
