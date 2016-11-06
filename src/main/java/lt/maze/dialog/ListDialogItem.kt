@@ -6,7 +6,7 @@ package lt.maze.dialog
  */
 open class ListDialogItem(open var itemText: String, open var data: Any?, protected open var selectHandler: ((ListDialogItem) -> Unit)?, open var enabled: () -> Boolean) {
 
-    internal var currentDialog: ListDialog? = null
+    var dialog: ListDialog? = null
 
     constructor(): this("", null, null, { true })
     constructor(itemText: String): this(itemText, null, null, { true })
@@ -26,10 +26,6 @@ open class ListDialogItem(open var itemText: String, open var data: Any?, protec
 
     fun enabled(func: () -> Boolean) {
         enabled = func
-    }
-
-    fun getDialog(): ListDialog {
-        return currentDialog!!
     }
 
     open fun onSelect() {

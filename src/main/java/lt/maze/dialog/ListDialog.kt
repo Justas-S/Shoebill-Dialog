@@ -56,14 +56,14 @@ open class ListDialog(player: Player, eventManager: EventManager): AbstractDialo
 
         @Suppress("UNCHECKED_CAST")
         fun items(items: List<ListDialogItem>): V {
-            items.forEach { it.currentDialog = dialog }
+            items.forEach { it.dialog = dialog }
             dialog.items.addAll(items)
             return this as V
         }
 
         @Suppress("UNCHECKED_CAST")
         fun item(item: ListDialogItem): V {
-            item.currentDialog = dialog
+            item.dialog = dialog
             dialog.items.add(item)
             return this as V
         }
