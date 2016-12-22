@@ -1,7 +1,7 @@
 package lt.maze.dialog
 
-import net.gtaun.shoebill.`object`.DialogId
-import net.gtaun.shoebill.`object`.Player
+import net.gtaun.shoebill.entities.DialogId
+import net.gtaun.shoebill.entities.Player
 import net.gtaun.shoebill.event.dialog.DialogResponseEvent
 import net.gtaun.shoebill.event.player.PlayerDeathEvent
 import net.gtaun.shoebill.event.player.PlayerDisconnectEvent
@@ -15,13 +15,15 @@ import net.gtaun.util.event.EventManagerNode
 abstract class AbstractDialog(override val player: Player, override val eventManager: EventManager) : Dialog {
 
     var shown = false
-    var destroyed = false
+
+    override val isDestroyed: Boolean
+        get() = dialogId.isDestroyed
 
     override val dialogId: DialogId = DialogId.create()
-    override var title: String? = null
-    override var body: String? = null
-    override var buttonOk: String? = null
-    override var buttonCancel: String? = null
+    override var title: String = ""
+    override var body: String = ""
+    override var buttonOk: String = ""
+    override var buttonCancel: String = ""
     var parentDialogProvider: (() -> Dialog)? = null
 
     open var clickCancelHandler: ((AbstractDialog) -> Unit)? = null
@@ -39,7 +41,7 @@ abstract class AbstractDialog(override val player: Player, override val eventMan
     override fun show() {
         if(!isDestroyed && !shown) {
             dialogId.show(player, style, title, prepareBodyString(), buttonOk, buttonCancel)
-            eventNode.registerHandler(DialogResponseEvent::class.java, { e ->
+            eventNode.registerHandler(DialogResponseEvent::class, { e ->
                 if(e.dialog == dialogId) {
                     shown = false
                     eventNode.cancelAll()
@@ -53,13 +55,13 @@ abstract class AbstractDialog(override val player: Player, override val eventMan
                 }
             })
 
-            eventNode.registerHandler(PlayerDisconnectEvent::class.java, { e ->
+            eventNode.registerHandler(PlayerDisconnectEvent::class, { e ->
                 if(e.player == player) {
                     destroy()
                 }
             })
 
-            eventNode.registerHandler(PlayerDeathEvent::class.java, { e ->
+            eventNode.registerHandler(PlayerDeathEvent::class, { e ->
                 if(e.player == player) {
                     destroy()
                 }
@@ -77,12 +79,7 @@ abstract class AbstractDialog(override val player: Player, override val eventMan
         clickCancelHandler?.invoke(this)
     }
 
-    override fun isDestroyed(): Boolean {
-        return destroyed
-    }
-
     override fun destroy() {
-        destroyed = true
         dialogId.destroy()
         eventNode.destroy()
     }

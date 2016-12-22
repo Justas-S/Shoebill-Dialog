@@ -1,7 +1,7 @@
 package lt.maze.dialog
 
-import net.gtaun.shoebill.`object`.Player
 import net.gtaun.shoebill.constant.DialogStyle
+import net.gtaun.shoebill.entities.Player
 import net.gtaun.shoebill.event.dialog.DialogResponseEvent
 import net.gtaun.util.event.EventManager
 
@@ -16,7 +16,7 @@ open class ListDialog(player: Player, eventManager: EventManager): AbstractDialo
     protected val items: MutableList<ListDialogItem> = mutableListOf()
 
     override fun onClickOk(event: DialogResponseEvent) {
-        val item = items[event.listitem]
+        val item = items[event.listItem]
         item.onSelect()
         onSelectItem(item)
     }

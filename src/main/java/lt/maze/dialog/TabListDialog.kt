@@ -1,7 +1,7 @@
 package lt.maze.dialog
 
-import net.gtaun.shoebill.`object`.Player
 import net.gtaun.shoebill.constant.DialogStyle
+import net.gtaun.shoebill.entities.Player
 import net.gtaun.util.event.EventManager
 
 /**
@@ -22,8 +22,6 @@ open class TabListDialog(player: Player, eventManager: EventManager): ListDialog
 
     override fun prepareBodyString(): String {
         if(headers.size > 0) {
-            player.sendMessage(headers.map { it.text }.joinToString("\t"))
-            player.sendMessage(headers.map { it.text }.joinToString("\t") + "\n" + super.prepareBodyString())
             return headers.map { it.text }.joinToString("\t") + "\n" + super.prepareBodyString()
         } else
             return super.prepareBodyString()

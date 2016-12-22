@@ -1,7 +1,7 @@
 package lt.maze.dialog
 
-import net.gtaun.shoebill.`object`.Player
 import net.gtaun.shoebill.constant.DialogStyle
+import net.gtaun.shoebill.entities.Player
 import net.gtaun.shoebill.event.dialog.DialogResponseEvent
 import net.gtaun.util.event.EventManager
 

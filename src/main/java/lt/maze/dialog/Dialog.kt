@@ -1,9 +1,9 @@
 package lt.maze.dialog
 
-import net.gtaun.shoebill.`object`.Destroyable
-import net.gtaun.shoebill.`object`.DialogId
-import net.gtaun.shoebill.`object`.Player
 import net.gtaun.shoebill.constant.DialogStyle
+import net.gtaun.shoebill.entities.Destroyable
+import net.gtaun.shoebill.entities.DialogId
+import net.gtaun.shoebill.entities.Player
 import net.gtaun.util.event.EventManager
 
 /**
@@ -17,10 +17,10 @@ interface Dialog: Destroyable {
     val eventManager: EventManager
     val style: DialogStyle
 
-    var title: String?
-    var body: String?
-    var buttonOk: String?
-    var buttonCancel: String?
+    var title: String
+    var body: String
+    var buttonOk: String
+    var buttonCancel: String
 
     fun show()
     fun showParent()
