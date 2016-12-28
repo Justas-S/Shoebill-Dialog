@@ -105,6 +105,8 @@ abstract class AbstractDialog(override val player: Player, override val eventMan
             return this as V
         }
 
+        open fun caption(caption: String) = caption { caption }
+
         @Suppress("UNCHECKED_CAST")
         open fun caption(caption: () -> String): V {
             dialog.title = caption.invoke()
