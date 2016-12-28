@@ -8,6 +8,13 @@
     <artifactId>dialog</artifactId>
     <version>1.2-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>gtaun-repo-public</id>
+            <url>http://repo.gtaun.net/content/groups/public/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>net.gtaun</groupId>
