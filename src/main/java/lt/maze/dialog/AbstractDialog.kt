@@ -123,6 +123,8 @@ abstract class AbstractDialog(override val player: Player, override val eventMan
             return this as V
         }
 
+        open fun buttonCancel(text: String) = buttonCancel { text }
+
         @Suppress("UNCHECKED_CAST")
         open fun buttonCancel(buttonCancel: () -> String): V {
             dialog.buttonCancel = buttonCancel.invoke()
