@@ -40,8 +40,12 @@ open class InputDialog(player: Player, eventManager: EventManager, val passwordM
 
     abstract class AbstractInputDialogBuilder<T: InputDialog, V: AbstractInputDialogBuilder<T, V>>(val dialog: T): AbstractDialogBuilder<T, V>(dialog) {
 
+
+        @Deprecated("Inconsistent method name", ReplaceWith("onClickOk(handler)"))
+        fun clickOk(handler: (InputDialog, String) -> Unit) = onClickOk(handler)
+
         @Suppress("UNCHECKED_CAST")
-        fun clickOk(handler: (InputDialog, String) -> Unit): V {
+        fun onClickOk(handler: (InputDialog, String) -> Unit): V {
             dialog.clickOkHandler = handler
             return this as V
         }
